@@ -1,0 +1,57 @@
+.sidebar {
+    width: 17rem;
+    height: 100vh;
+    background-color: #0c2c4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    left: 0;
+    top: 0;
+    position: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-logo {
+    width: 170px;
+    margin-bottom: 2rem;
+}
+
+.sidebar-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.sidebar li {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    border-bottom: 2px solid #b2b2b2;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sidebar li:hover {
+    background-color: #004373;
+}
+
+.sidebar-icon {
+    width: 2rem;
+    margin-right: 1rem;
+    position: absolute;
+    left: 1rem;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../Font/Poppins-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
