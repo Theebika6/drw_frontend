@@ -7,6 +7,8 @@ import image4 from '../Images/AboutUs/montreal-4.jpeg';
 import image5 from '../Images/AboutUs/montreal-5.jpeg';
 import image6 from '../Images/AboutUs/montreal-6.jpeg';
 import { useNavigate } from 'react-router-dom';
+import avgPrice from '../Data/average_price.csv';
+import Papa from "papaparse";
 
 
 const AboutUs = ({ isSidebarCollapsed }) => {
@@ -16,8 +18,25 @@ const AboutUs = ({ isSidebarCollapsed }) => {
     const [location, setLocation] = useState('');
     const navigate = useNavigate();
 
+    const fetchAveragePrice = async (locationName) => {
+        return new Promise((resolve, reject) => {
+            Papa.parse(avgPrice, {
+                download: true,
+                header: true,
+                complete: (results) => {
+                    const priceData = results.data.find(row => row.Region === locationName);
+                    resolve(priceData ? priceData['Av.Price'] : null);
+                },
+                error: (error) => {
+                    reject(error);
+                }
+            });
+        });
+    };
+
     const handleSubmit = async () => {
         try {
+            const avgPrice = await fetchAveragePrice(location);
             const response = await fetch('http://127.0.0.1:5000/predict', {
                 method: 'POST',
                 headers: {
@@ -31,10 +50,13 @@ const AboutUs = ({ isSidebarCollapsed }) => {
             }
 
             const data = await response.json();
-            console.log('Data received:', data); // Debug log
-            localStorage.setItem('prediction', JSON.stringify(data.prediction));
+            // Store both prediction and average price in localStorage
+            localStorage.setItem('prediction', JSON.stringify({
+                result: data.prediction,
+                avgPrice: avgPrice,
+                locationName: location
+            }));
 
-            console.log('Redirecting to /map'); // Debug log
             navigate('/map');
         } catch (error) {
             console.error('Error in handleSubmit:', error);

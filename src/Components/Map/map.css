@@ -77,5 +77,6 @@
 .prediction-placeholder {
     margin-top: 10px;
     padding: 10px;
-    border: 1px dashed #999; /* Example border for placeholder */
+    border: 1px dashed #999;
 }
+

@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './map.css';
+import avgPrice from '../Data/average_price.csv';
 import Papa from 'papaparse';
 import { format, startOfDay } from 'date-fns';
 
@@ -57,7 +58,7 @@ const Map = ({ isCollapsed }) => {
     };
 
     const position = [45.5017, -73.5673]; // Coordinates for Montreal
-    const zoom = 13;
+    const zoom = 10;
 
     // Define bounds for Montreal
     const corner1 = L.latLng(45.70, -73.9);
@@ -65,17 +66,43 @@ const Map = ({ isCollapsed }) => {
     const bounds = L.latLngBounds(corner1, corner2);
 
     useEffect(() => {
-        const handleStorageChange = () => {
-            setPrediction(JSON.parse(localStorage.getItem('prediction')));
+
+        const fetchAveragePrice = (locationName) => {
+            Papa.parse(avgPrice, {
+                download: true,
+                header: true,
+                complete: (results) => {
+                    const found = results.data.find(row => row.Region === locationName);
+                    if (found) {
+                        setPrediction(prev => ({
+                            ...prev,
+                            avgPrice: found['Av.Price']
+                        }));
+                    }
+                }
+            });
         };
 
-        // Add event listener for localStorage changes
+        const handleStorageChange = () => {
+            const predictionData = JSON.parse(localStorage.getItem('prediction')) || {
+                result: null,
+                avgPrice: null,
+                locationName: null,
+            };
+            setPrediction(predictionData);
+
+            if (predictionData.locationName) {
+                fetchAveragePrice(predictionData.locationName);
+            }
+        };
+
+        handleStorageChange();
         window.addEventListener('storage', handleStorageChange);
 
-        // Clean up the event listener
         return () => {
             window.removeEventListener('storage', handleStorageChange);
         };
+
     }, []);
 
     return (
@@ -134,7 +161,15 @@ const Map = ({ isCollapsed }) => {
             </MapContainer>
             <div className="prediction-section">
                 <h2>Prediction from the engine:</h2>
-                <div className="prediction-placeholder">{prediction ? prediction : 'Placeholder Content'}</div>
+                <div className="prediction-placeholder">
+                    {prediction && prediction.result ? prediction.result : 'Placeholder Content'}
+                </div>
+                {prediction && prediction.locationName && (
+                    <div className="location-details">
+                        <strong>Location:</strong> {prediction.locationName}<br />
+                        <strong>Average Price:</strong> {prediction.avgPrice ? formatPrice(prediction.avgPrice) : 'N/A'} $CAD
+                    </div>
+                )}
             </div>
         </div>
     );
