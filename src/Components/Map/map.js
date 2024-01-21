@@ -13,6 +13,7 @@ const Map = ({ isCollapsed }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [dateRange, setDateRange] = useState({ min: null, max: null });
     const [showAllData, setShowAllData] = useState(false);
+    const [prediction, setPrediction] = useState(JSON.parse(localStorage.getItem('prediction')));
 
     useEffect(() => {
         // Parse the CSV data
@@ -62,6 +63,20 @@ const Map = ({ isCollapsed }) => {
     const corner1 = L.latLng(45.70, -73.9);
     const corner2 = L.latLng(45.4, -73.4);
     const bounds = L.latLngBounds(corner1, corner2);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setPrediction(JSON.parse(localStorage.getItem('prediction')));
+        };
+
+        // Add event listener for localStorage changes
+        window.addEventListener('storage', handleStorageChange);
+
+        // Clean up the event listener
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
 
     return (
         <div className={`map ${isCollapsed ? 'collapsed' : ''}`}>
@@ -117,6 +132,10 @@ const Map = ({ isCollapsed }) => {
                     );
                 })}
             </MapContainer>
+            <div className="prediction-section">
+                <h2>Prediction from the engine:</h2>
+                <div className="prediction-placeholder">{prediction ? prediction : 'Placeholder Content'}</div>
+            </div>
         </div>
     );
 };

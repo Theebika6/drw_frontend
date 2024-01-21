@@ -6,12 +6,40 @@ import image3 from '../Images/AboutUs/montreal-3.jpeg';
 import image4 from '../Images/AboutUs/montreal-4.jpeg';
 import image5 from '../Images/AboutUs/montreal-5.jpeg';
 import image6 from '../Images/AboutUs/montreal-6.jpeg';
+import { useNavigate } from 'react-router-dom';
+
 
 const AboutUs = ({ isSidebarCollapsed }) => {
     const images = [image1, image2, image3, image4, image5, image6];
     const [currentImage, setCurrentImage] = useState(0);
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ location, price })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Data received:', data); // Debug log
+            localStorage.setItem('prediction', JSON.stringify(data.prediction));
+
+            console.log('Redirecting to /map'); // Debug log
+            navigate('/map');
+        } catch (error) {
+            console.error('Error in handleSubmit:', error);
+        }
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -37,22 +65,6 @@ const AboutUs = ({ isSidebarCollapsed }) => {
 
     const handleLocationChange = (e) => {
         setLocation(e.target.value);
-    };
-
-    const handleSubmit = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/predict', {  // URL of your Flask server
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ location, price })
-            });
-            const data = await response.json();
-            console.log(data.prediction);  // Handle the prediction data
-        } catch (error) {
-            console.error('Error:', error);
-        }
     };
 
     return (
