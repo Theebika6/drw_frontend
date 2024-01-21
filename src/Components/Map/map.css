@@ -1,0 +1,16 @@
+.map {
+    height: 500px;
+    margin-top: 5rem;
+}
+
+.map.collapsed {
+
+}
+
+.mapContainer{
+    left: 40%;
+}
+
+
+
+
