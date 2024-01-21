@@ -103,3 +103,11 @@
     font-style: normal;
 }
 
+.Team-members{
+    color: white;
+    font-size: 8px;
+    margin-top: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

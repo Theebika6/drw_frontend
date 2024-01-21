@@ -59,6 +59,12 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
             <div className="sidebar-toggle" onClick={toggleSidebar}>
                 <img src={isCollapsed ? rightArrow : leftArrow} alt="Toggle Sidebar" className="toggle-icon"/>
             </div>
+            <div className={'Team-members'}>
+                <h2>Theebika T.</h2>
+                <h2>Tatiana B.</h2>
+                <h2>Bachar A.</h2>
+                <h2>Patrick R.</h2>
+            </div>
         </div>
     );
 };
