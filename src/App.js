@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './Components/Sidebar/Sidebar';
 import AboutUs from './Components/About-Us/AboutUs';
 
@@ -9,8 +9,8 @@ const App = () => {
             <div className="App">
                 <Sidebar />
                 <Routes>
-                    <Route path="/" element={<AboutUs />} />
-                    {/* Add more routes here as needed */}
+                    <Route path="/" element={<Navigate to="/about-us"/>} />
+                    <Route path="/about-us" element={<AboutUs/>} />
                 </Routes>
             </div>
         </Router>
