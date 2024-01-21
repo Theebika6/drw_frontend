@@ -1,8 +1,6 @@
 import React from 'react';
 import './map.css';
 
-
-
 const Map = ({ isCollapsed }) => {
 
     return (
