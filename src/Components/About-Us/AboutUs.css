@@ -3,24 +3,27 @@
     display: flex;
     justify-content: flex-end;
     height: 98vh;
+    left: 1rem;
     position: relative;
+    z-index: 0;
 }
 
 .about-us.expanded .search-bar{
-    width: 220%;
+    width: 100%;
     transition: all 0.3s ease;
 }
 
 .about-us.expanded .search-bar-container{
-    right: 60%;
+    right: 20%;
+    left: 30%;
     transition: all 0.3s ease;
 }
 
 .background-images {
     position: absolute;
-    top: -1%;
     right: -1rem;
-    height: 100%;
+    top:-1rem;
+    height: 103.5%;
     width: 36%;
     overflow: hidden;
 }
@@ -60,8 +63,9 @@
     content: '';
     position: absolute;
     left: 0;
-    right: -1rem;
+    right: -2rem;
     top: -2rem;
+    height: 105.5%;
     bottom: 0;
     background: rgba(255, 255, 255, 0.7);
     z-index: -1;
@@ -74,15 +78,17 @@
 
 .search-bar-container {
     position: absolute;
-    top: 50%;
-    right: 45%;
+    top: 60%;
+    right: 5%;
+    left: 45%;
     transform: translate(-50%, -50%);
     z-index: 2;
     transition: all 0.3s ease;
+    padding-top: 10px;
 }
 
 .search-bar {
-    width: 170%;
+    width: 75%;
     height: 50px;
     border-radius: 30px;
     padding: 5px 20px;
@@ -97,39 +103,88 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.search-bar:focus {
-    outline: none;
-    border: 3px solid #00d4c2;
-    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+.search-bar:hover, .price-tag:hover{
+    background-color: rgba(14, 52, 89, 0.86);
 }
 
-.search-bar::placeholder {
+.price-tag{
+    height: 50px;
+    border-radius: 30px;
+    padding: 5px 20px;
+    font-size: 18px;
+    background-color: rgba(14, 52, 89, 0.63);
+    border: 1px solid rgb(14, 52, 89);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    background-clip: padding-box;
+    margin: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.search-bar:focus, .price-tag:focus {
+    outline: none;
+    border: 3px solid #00d4c2;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar::placeholder, .price-tag::placeholder {
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
 }
 
-.w-logo-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 500px;
-    height: 500px;
-    transform: rotate(-35deg);
-    z-index: 1;
+.submit-button {
+    background-color: #008d86;
+    color: #ffffff;
+    border: rgba(204, 204, 204, 0);
+    border-radius: 50px;
+    padding: 20px 25px;
+    width: 10rem;
+    margin-left: 2rem;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
-.w-logo-container img {
+.submit-button:hover {
+    background-color: #00c5ba;
+}
+
+.dollar-sign{
+    font-size: 15px;
+}
+
+.about-section {
+    width: 75%; /* Adjust width as per your layout */
+    padding: 20px;
+    height: 15rem;
+    margin-top: 5rem;
+    margin-left: 1rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    color: #0c2c4a;
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.about-us.expanded .about-section{
     width: 100%;
-    height: auto;
-    display: block;
+    transition: all 0.3s ease;
 }
 
-.w-logo-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+.about-section h2 {
+    margin-bottom: 10px;
+    color: #00d4c2; /* Use the brand color for the heading */
+    font-size: 24px;
 }
+
+.about-section p {
+    line-height: 1.6; /* Increase line height for better readability */
+}
+
