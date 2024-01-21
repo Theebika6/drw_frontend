@@ -10,11 +10,48 @@
     top: 0;
     position: fixed;
     font-family: 'Poppins', sans-serif;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 4rem;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    width: 30px;
+    height: 30px;
+    padding: 0.25rem;
+}
+
+.toggle-icon:hover{
+    background-color: #efefef;
+    padding: 0.25rem;
+    border-radius: 50px;
+}
+
+.sidebar.collapsed .sidebar-link span {
+    display: none;
 }
 
 .sidebar-logo {
     width: 170px;
     margin-bottom: 2rem;
+    margin-left: 3rem;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    margin-left: 16rem;
+    transition: margin-left 0.3s ease;
 }
 
 .sidebar-link {
@@ -22,22 +59,27 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     width: 100%;
 }
 
 .sidebar li {
     list-style-type: none;
-    padding: 0;
     width: 100%;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar li:hover {
-    background-color: #004373;
+.sidebar li:hover{
+    background-color: #1a3f5f;
+}
+
+.sidebar.collapsed .sidebar-link{
+    justify-content: center;
+    margin-top: 5rem;
+    padding: 0.5rem;
 }
 
 .sidebar-icon {
