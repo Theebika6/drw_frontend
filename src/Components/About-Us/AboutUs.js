@@ -33,6 +33,9 @@ const AboutUs = () => {
             <div className='Welcome-header'>
                 <h1>Choose your next location...</h1>
             </div>
+            <div className="search-bar-container">
+                <input type="text" className="search-bar" placeholder="Search For Location..." />
+            </div>
         </div>
     );
 };
