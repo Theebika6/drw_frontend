@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { Bar } from 'react-chartjs-2';
+import Chart, { registerables } from 'chart.js/auto';
 import './Analytics.css';
 
 import averagePriceData from '../Data/average_price.csv';
+
+// Register the required components
+Chart.register(...registerables);
 
 const Analytics = ({ isCollapsed }) => {
     const [chartData, setChartData] = useState({
@@ -20,8 +24,7 @@ const Analytics = ({ isCollapsed }) => {
                 const parsedData = results.data;
                 console.log("Parsed CSV Data:", parsedData);
 
-                // Ensure data is properly formatted and filter out any empty rows
-                const filteredData = parsedData.filter(item => item.Region && item['Av.Price'])
+                const filteredData = parsedData.filter(item => item.Region && item['Av.Price']);
                 const sortedData = filteredData.sort((a, b) => parseFloat(a['Av.Price']) - parseFloat(b['Av.Price']));
 
                 const regions = sortedData.map(item => item.Region);
