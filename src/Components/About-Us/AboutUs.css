@@ -6,6 +6,16 @@
     position: relative;
 }
 
+.about-us.expanded .search-bar{
+    width: 250%;
+    transition: all 0.3s ease;
+}
+
+.about-us.expanded .search-bar-container{
+    right: 60%;
+    transition: all 0.3s ease;
+}
+
 .background-images {
     position: absolute;
     top: -1%;
@@ -65,29 +75,37 @@
 .search-bar-container {
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 45%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .search-bar {
-    width: 450px; /* Adjust the width as needed */
-    height: 60px; /* Adjust the height as needed */
-    border-radius: 30px; /* Makes it more oval */
-    padding: 0 20px;
-    font-size: 18px; /* Larger font size */
-    background-color: rgba(255, 255, 255, 0.96); /* Slightly more opaque white */
-    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    color: #0c2c4a; /* Text color */
+    width: 170%;
+    height: 50px;
+    border-radius: 30px;
+    padding: 5px 20px;
+    font-size: 18px;
+    background-color: rgba(14, 52, 89, 0.63);
+    border: 1px solid rgb(14, 52, 89);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    background-clip: padding-box;
+    margin: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .search-bar:focus {
     outline: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* More prominent shadow on focus */
+    border: 3px solid #00d4c2;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar::placeholder {
-    color: #9d9d9d;
+    color: #ffffff;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
 }

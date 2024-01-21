@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './Components/Sidebar/Sidebar';
 import AboutUs from './Components/About-Us/AboutUs';
 
 const App = () => {
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
     return (
         <Router>
             <div className="App">
-                <Sidebar />
+                <Sidebar isCollapsed={isSidebarCollapsed} setIsCollapsed={setIsSidebarCollapsed} />
                 <Routes>
-                    <Route path="/" element={<Navigate to="/about-us"/>} />
-                    <Route path="/about-us" element={<AboutUs/>} />
+                    <Route path="/" element={<Navigate to="/about-us" />} />
+                    <Route path="/about-us" element={<AboutUs isSidebarCollapsed={isSidebarCollapsed} />} />
                 </Routes>
             </div>
         </Router>
@@ -18,3 +20,4 @@ const App = () => {
 };
 
 export default App;
+

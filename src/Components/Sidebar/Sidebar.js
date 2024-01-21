@@ -10,9 +10,8 @@ import leftArrow from '../Images/Sidebar/left-arrow.png';
 import rightArrow from '../Images/Sidebar/right-arrow.png';
 
 
-const Sidebar = () => {
+const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
     const [activeLink, setActiveLink] = useState(null);
-    const [isCollapsed, setIsCollapsed] = useState(false);
 
     const handleLinkClick = (linkName) => {
         setActiveLink(linkName);
