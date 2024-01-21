@@ -61,6 +61,10 @@ const AboutUs = ({ isSidebarCollapsed }) => {
                 />
                 <span className="dollar-sign">CAD$</span>
                 <button type="submit" className="submit-button">Submit</button>
+                <div className="about-section">
+                    <h2>About Us</h2>
+                    <p>In response to DRW's challenge, our team has crafted a tool that bridges the gap between Montreal's Open Data and the community. It's a straightforward platform designed to reveal insights into real estate values and safety, helping newcomers and residents alike understand the dynamics of their city. Join us in exploring the landscape of Montreal through the clear lens of data.</p>
+                </div>
             </div>
         </div>
     );
