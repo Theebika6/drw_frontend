@@ -13,21 +13,20 @@ const Analytics = ({ isCollapsed }) => {
     const [chartOptions, setChartOptions] = useState({});
 
     useEffect(() => {
-        // Parse the CSV file
         Papa.parse(averagePriceData, {
             download: true,
             header: true,
             complete: (results) => {
-                const data = results.data;
-                console.log("Parsed CSV Data:", data);
+                const parsedData = results.data;
+                console.log("Parsed CSV Data:", parsedData);
 
-                // Sort data by price
-                const sortedData = data.sort((a, b) => parseFloat(a['Av.Price']) - parseFloat(b['Av.Price']));
+                // Ensure data is properly formatted and filter out any empty rows
+                const filteredData = parsedData.filter(item => item.Region && item['Av.Price'])
+                const sortedData = filteredData.sort((a, b) => parseFloat(a['Av.Price']) - parseFloat(b['Av.Price']));
 
                 const regions = sortedData.map(item => item.Region);
                 const prices = sortedData.map(item => parseFloat(item['Av.Price']));
 
-                // Apply a gradient of colors
                 const backgroundColors = prices.map((price, index, arr) => {
                     const minPrice = arr[0];
                     const maxPrice = arr[arr.length - 1];
@@ -35,7 +34,6 @@ const Analytics = ({ isCollapsed }) => {
                     return `rgba(${255 * ratio}, ${255 * (1 - ratio)}, 0, 0.6)`;
                 });
 
-                // Set the data for the bar chart
                 setChartData({
                     labels: regions,
                     datasets: [
@@ -49,14 +47,12 @@ const Analytics = ({ isCollapsed }) => {
                     ],
                 });
 
-                // Update chart options
                 setChartOptions({
                     scales: {
                         y: {
                             beginAtZero: true,
                         },
                         x: {
-                            // To prevent the chart from compressing on the x-axis
                             maxBarThickness: 50,
                         }
                     },
