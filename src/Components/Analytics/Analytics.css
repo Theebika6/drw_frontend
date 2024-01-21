@@ -1,34 +1,13 @@
 .analytics {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
+    flex-direction: column;
     padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin-left: 16rem;
+    margin-top: 5rem;
     transition: all 0.3s ease;
 }
 
 .analytics.collapsed {
-    margin: 20px 0;
-    padding: 10px;
-    height: 100px; /* Adjust the height when collapsed */
-    overflow: hidden;
+    left: -30%;
 }
 
-/* Additional styles for the chart */
-.chart-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* You may want to add some responsive design features */
-@media (max-width: 768px) {
-    .analytics {
-        flex-direction: column;
-    }
-}
-
-/* Add any other styles that you think are necessary for your application */
