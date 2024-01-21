@@ -39,10 +39,13 @@
     border-radius: 50px;
 }
 
-.sidebar.collapsed .sidebar-link span {
-    display: none;
+.sidebar li:hover .sidebar-link span {
+    text-shadow: 0 0 10px #cdcdcd;
 }
 
+.sidebar li:hover .sidebar-icon {
+    filter: drop-shadow(0 0 10px #cdcdcd);
+}
 .sidebar-logo {
     width: 170px;
     margin-bottom: 2rem;
@@ -71,10 +74,6 @@
     display: flex;
     justify-content: center;
     transition: background-color 0.3s ease;
-}
-
-.sidebar li:hover{
-    background-color: #1a3f5f;
 }
 
 .sidebar.collapsed .sidebar-link{
