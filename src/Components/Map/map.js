@@ -166,8 +166,8 @@ const Map = ({ isCollapsed }) => {
                 </div>
                 {prediction && prediction.locationName && (
                     <div className="location-details">
-                        <strong>Location:</strong> {prediction.locationName}<br />
-                        <strong>Average Price:</strong> {prediction.avgPrice ? formatPrice(prediction.avgPrice) : 'N/A'} $CAD
+                        <span>Location:</span> {prediction.locationName}<br/>
+                        <span>Average Price:</span> {prediction.avgPrice ? formatPrice(prediction.avgPrice) : 'N/A'} $CAD
                     </div>
                 )}
             </div>
