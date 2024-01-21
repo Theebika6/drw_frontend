@@ -45,7 +45,13 @@
 
 .sidebar li:hover .sidebar-icon {
     filter: drop-shadow(0 0 10px #cdcdcd);
+    text-shadow: 0 0 10px #cdcdcd; 
 }
+
+.sidebar li:hover .sidebar-icon {
+    filter: drop-shadow(0 0 10px #cdcdcd); 
+}
+
 .sidebar-logo {
     width: 170px;
     margin-bottom: 2rem;
