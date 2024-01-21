@@ -46,7 +46,7 @@ const Analytics = ({ isCollapsed }) => {
                         {
                             label: 'Average Price',
                             data: prices,
-                            backgroundColor: backgroundColors,
+                            backgroundColor: '#09D4D7',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
                         },
@@ -85,7 +85,7 @@ const Analytics = ({ isCollapsed }) => {
                         {
                             label: 'Number of Crimes',
                             data: numOfCrimes,
-                            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                            backgroundColor:  '#09D4D7',
                             borderColor: 'rgba(153, 102, 255, 1)',
                             borderWidth: 1,
                         },
