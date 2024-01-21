@@ -11,6 +11,7 @@ const AboutUs = ({ isSidebarCollapsed }) => {
     const images = [image1, image2, image3, image4, image5, image6];
     const [currentImage, setCurrentImage] = useState(0);
     const [price, setPrice] = useState('');
+    const [location, setLocation] = useState('');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,6 +35,26 @@ const AboutUs = ({ isSidebarCollapsed }) => {
         return formatter.format(value).slice(1); // Remove the '$' from the formatter
     };
 
+    const handleLocationChange = (e) => {
+        setLocation(e.target.value);
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/predict', {  // URL of your Flask server
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ location, price })
+            });
+            const data = await response.json();
+            console.log(data.prediction);  // Handle the prediction data
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <div className={`about-us ${isSidebarCollapsed ? 'expanded' : ''}`}>
             <div className="background-images">
@@ -50,7 +71,7 @@ const AboutUs = ({ isSidebarCollapsed }) => {
                 <h1>Choose your next location...</h1>
             </div>
             <div className="search-bar-container">
-                <input type="text" className="search-bar" placeholder="Search For Location..." />
+                <input type="text" className="search-bar" placeholder="Search For Location..."  onChange={handleLocationChange}/>
                 <input
                     type="text"
                     className="price-tag"
@@ -60,7 +81,7 @@ const AboutUs = ({ isSidebarCollapsed }) => {
                     step="1000"
                 />
                 <span className="dollar-sign">CAD$</span>
-                <button type="submit" className="submit-button">Submit</button>
+                <button type="submit" className="submit-button" onClick={handleSubmit}>Submit</button>
                 <div className="about-section">
                     <h2>About Us</h2>
                     <p>In response to DRW's challenge, our team has crafted a tool that bridges the gap between Montreal's Open Data and the community. It's a straightforward platform designed to reveal insights into real estate values and safety, helping newcomers and residents alike understand the dynamics of their city. Join us in exploring the landscape of Montreal through the clear lens of data.</p>
