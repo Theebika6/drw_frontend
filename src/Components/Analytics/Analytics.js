@@ -33,13 +33,6 @@ const Analytics = ({ isCollapsed }) => {
                 const regions = sortedData.map(item => item.Region);
                 const prices = sortedData.map(item => parseFloat(item['Av.Price']));
 
-                const backgroundColors = prices.map((price, index, arr) => {
-                    const minPrice = arr[0];
-                    const maxPrice = arr[arr.length - 1];
-                    const ratio = (price - minPrice) / (maxPrice - minPrice);
-                    return `rgba(${255 * ratio}, ${255 * (1 - ratio)}, 0, 0.6)`;
-                });
-
                 setChartData({
                     labels: regions,
                     datasets: [
@@ -109,9 +102,13 @@ const Analytics = ({ isCollapsed }) => {
     }, []);
 
     return (
-        <div className={`analytics ${isCollapsed ? 'collapsed' : ''}`} style={{ height: '800px', width: '100%' }}>
-            <Bar data={chartData} options={chartOptions} />
-            <Bar data={crimeChartData} options={crimeChartOptions} /> {/* Second graph for crime data */}
+        <div className={`analytics ${isCollapsed ? 'collapsed' : ''}`} style={{ height: '500px', width: '80%' }}>
+            <div className={'chartData'}>
+                <Bar data={chartData} options={chartOptions}/>
+            </div>
+            <div className={'crimeChart'}>
+                <Bar data={crimeChartData} options={crimeChartOptions} />
+            </div>
         </div>
     );
 };

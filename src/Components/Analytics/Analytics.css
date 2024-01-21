@@ -1,78 +1,13 @@
-/* .analytics {
+.analytics {
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
+    flex-direction: column;
     padding: 20px;
-    margin-left: 5rem; 
+    margin-left: 16rem;
     margin-top: 5rem;
-    margin-right: 5rem;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
     transition: all 0.3s ease;
-    height: auto; 
 }
-*/
+
 .analytics.collapsed {
-    margin: 20px 0;
-    padding: 10px;
-    height: 100px; 
-    overflow: hidden;
-}
-.chart-container {
-    width: calc(100% - 10rem); /* Adjust width based on sidebar width */
-    margin-left: auto;
-    margin-right: auto;
-    height: 500px; /* Adjust height as needed */
-}/*
-.chart-container {
-    position: relative;
-    width: 80%;
-    height: 400px; 
-    margin-top: 5rem;
-    margin-right: 5rem;
-    margin-bottom: 20px; 
+    left: -30%;
 }
 
-@media (max-width: 768px) {
-    .analytics {
-        flex-direction: column;
-    }
-
-    .chart-container {
-        height: 300px; 
-    }
-}
-
- */
- .analytics-page {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap onto the next line if needed */
-    justify-content: center; /* Centers items on the main-axis */
-    align-items: flex-start; /* Aligns items to the start of the cross-axis */
-    gap: 20px; /* Space between the chart containers */
-    padding: 20px;
-}
-
-.chart-container {
-    flex: 1; /* Flex grow, allows the container to grow */
-    min-width: 300px; /* Minimum width before wrapping */
-    height: 400px; /* Set a fixed height for the charts */
-    margin-bottom: 20px; /* Space below the chart */
-    /* Remove margin-top, margin-right, margin-left if using gap in .analytics-page */
-}
-
-/* Styles for when the analytics page is collapsed */
-.analytics-page.collapsed .chart-container {
-    height: 100px; /* Adjust the height when collapsed */
-}
-
-@media (max-width: 768px) {
-    .chart-container {
-        /* On smaller screens, take full width to stack on top of each other */
-        flex-basis: 100%;
-        height: 300px; /* Adjust the height on smaller screens */
-    }
-}
