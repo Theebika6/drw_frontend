@@ -11,6 +11,7 @@
     position: fixed;
     font-family: 'Poppins', sans-serif;
     transition: width 0.3s ease;
+    z-index: 2;
 }
 
 .sidebar.collapsed {
